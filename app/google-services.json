@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "340360461079",
+    "firebase_url": "https://educher-child.firebaseio.com",
+    "project_id": "educher-child",
+    "storage_bucket": "educher-child.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340360461079:android:5553bfacef569b5df05552",
+        "android_client_info": {
+          "package_name": "com.example.educher_child"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340360461079-t8ei02mrtd4maqlpt3ioqdknbni3dm6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.educher_child",
+            "certificate_hash": "d880965dcaea7a85b03defcc1903db99c44428a4"
+          }
+        },
+        {
+          "client_id": "340360461079-n30ats1tqvnto4sesbgh7nb4rg9ackdc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYw2b8Vs-iXOhEC2Lsu296t7VkN9_HHzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340360461079-n30ats1tqvnto4sesbgh7nb4rg9ackdc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
