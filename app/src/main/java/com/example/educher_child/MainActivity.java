@@ -28,7 +28,6 @@ public class MainActivity extends Activity {
             startActivity(new Intent(getApplicationContext(),ActiveAdministrator.class));
             finish();
         }
-
         findViewById(R.id.next_overlay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

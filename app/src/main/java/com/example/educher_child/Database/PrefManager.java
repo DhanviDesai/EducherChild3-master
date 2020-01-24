@@ -15,6 +15,8 @@ public class PrefManager {
     private static final String IS_SETTING_BLOCK = "setting";
     private static final String LAUNCHER_PACKAGE = "launcherpackage";
     private static final String SETTING_PACKAGE = "settingpackage";
+    private static final String PARENT_KEY = "parent_key";
+    private static final String CHILD_ID = "childid";
 
     private Context context;
 
@@ -27,6 +29,24 @@ public class PrefManager {
     public void setPackage(String p){
         editor.putString(PACKAGE,p);
         editor.commit();
+    }
+
+    public void setParentKey(String parentKey){
+        editor.putString(PARENT_KEY,parentKey);
+        editor.commit();
+    }
+
+    public void setChildId(String childId){
+        editor.putString(CHILD_ID,childId);
+        editor.commit();
+    }
+
+    public String getParentKey(){
+        return sharedPreferences.getString(PARENT_KEY,null);
+    }
+
+    public String getChildId(){
+        return sharedPreferences.getString(CHILD_ID,null);
     }
 
     public String getPackage(){

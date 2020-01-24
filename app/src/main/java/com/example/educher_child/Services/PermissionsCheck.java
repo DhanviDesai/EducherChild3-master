@@ -9,16 +9,26 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.educher_child.Database.PrefManager;
 import com.example.educher_child.MainActivity;
 
 public class PermissionsCheck extends Service {
 
     private Handler handler = new Handler();
+    private String parent_key;
+    private String childId;
+    PrefManager prefManager;
+
+
+
 
     @Override
     public void onCreate() {
         super.onCreate();
         permissionCheck();
+        prefManager = new PrefManager(getApplicationContext());
+        parent_key = prefManager.getParentKey();
+        childId = prefManager.getChildId();
     }
 
     private void permissionCheck(){
@@ -33,6 +43,8 @@ public class PermissionsCheck extends Service {
                     Intent i = new Intent();
                     i.setAction("com.example.childhidden");
                     i.putExtra("Status",Settings.canDrawOverlays(getApplicationContext()));
+                    i.putExtra("ParentId",parent_key);
+                    i.putExtra("ChildId",childId);
                     sendBroadcast(i);
 
 

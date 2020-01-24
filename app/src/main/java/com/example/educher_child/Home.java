@@ -72,11 +72,10 @@ public class Home extends AppCompatActivity {
         startService(new Intent(getApplicationContext(), Service.class));
         startService(new Intent(getApplicationContext(), MyService.class));
         startService(new Intent(getApplicationContext(), ForegroundTasks.class));
-        startService(new Intent(getApplicationContext(), PermissionsCheck.class));
 
         Receiver r = new Receiver();
-        IntentFilter i = new IntentFilter("com.example.educher_child");
-        registerReceiver(r,i);
+        IntentFilter i2 = new IntentFilter("com.example.educher_child");
+        registerReceiver(r,i2);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(new Intent(Home.this, ForegroundService.class));
@@ -114,6 +113,10 @@ public class Home extends AppCompatActivity {
         c.moveToFirst();
         childiD = c.getString(2);
         c.close();
+        prefManager.setChildId(childiD);
+        prefManager.setParentKey(parent_key);
+
+        startService(new Intent(getApplicationContext(),PermissionsCheck.class));
 
         //This method will be called directly by firebase when there is any change in the data that this reference is pointing to
         reference = FirebaseDatabase.getInstance().getReference(parent_key).child(childiD).child(SUGGESTION);
