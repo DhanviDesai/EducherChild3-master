@@ -216,7 +216,7 @@ public class ParentKey extends AppCompatActivity {
 
 
         List<AppInfo> installedApps = new ArrayList();
-        List<PackageInfo> apps = packageManager.getInstalledPackages(PackageManager.SIGNATURE_MATCH);
+        List<PackageInfo> apps = packageManager.getInstalledPackages(PackageManager.GET_SIGNATURES);
         if (apps != null && !apps.isEmpty()) {
 
             for (int i = 0; i < apps.size(); i++) {
