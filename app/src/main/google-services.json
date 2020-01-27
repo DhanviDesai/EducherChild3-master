@@ -126,6 +126,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "340360461079-rlce23b7qevspd3tkbob3de1q71i18v2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.edudher_child",
+            "certificate_hash": "90e5de2cf5e179612d876e0bda3affa04d048e04"
+          }
+        },
+        {
           "client_id": "340360461079-hk6hnbae5nnogdg50o3p67hgjubt2loh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
