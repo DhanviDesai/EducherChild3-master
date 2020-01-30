@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.example.educher_child.Database.AppLockDatabase;
 import com.example.educher_child.Database.PrefManager;
+import com.example.educher_child.Receiver.HiddenReceiver;
 import com.example.educher_child.Services.ForegroundService;
 import com.example.educher_child.Services.ForegroundTasks;
 import com.example.educher_child.Services.MyService;
@@ -38,6 +39,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.example.educher_child.AppConfiguration.APPS;
 import static com.example.educher_child.AppConfiguration.CHILD_ID;
 import static com.example.educher_child.AppConfiguration.PARENT_KEY;
 import static com.example.educher_child.AppConfiguration.SUGGESTION;
@@ -53,6 +55,8 @@ public class Home extends AppCompatActivity {
     private int count;
     private String parent_key,childiD;
     private static final String TAG = "Dashboard";
+    private String launcherPackage = null;
+    private String systemUIPackage = null;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -83,6 +87,7 @@ public class Home extends AppCompatActivity {
             startService(new Intent(Home.this, ForegroundService.class));
         }
         startService(new Intent(getApplicationContext(), ScheduleService.class));
+
 
         count = 0;
         apps = findViewById(R.id.statictics);
@@ -117,6 +122,48 @@ public class Home extends AppCompatActivity {
         prefManager.setParentKey(parent_key);
 
         startService(new Intent(getApplicationContext(),PermissionsCheck.class));
+
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference()
+                .child(parent_key).child(childiD).child(APPS);
+        reference1.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String name = dataSnapshot.child("name").getValue().toString();
+                if(name.equals("Phone Screen")){
+                    launcherPackage = dataSnapshot.child("packageName").getValue().toString();
+
+                }
+                if(name.equals("System UI")){
+                    systemUIPackage = dataSnapshot.child("System UI").getValue().toString();
+                }
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        HiddenReceiver hidden = new HiddenReceiver(launcherPackage,systemUIPackage,parent_key,childiD);
+        IntentFilter filter = new IntentFilter("com.example.educher_child");
+        this.registerReceiver(hidden, filter);
 
         //This method will be called directly by firebase when there is any change in the data that this reference is pointing to
         reference = FirebaseDatabase.getInstance().getReference(parent_key).child(childiD).child(SUGGESTION);

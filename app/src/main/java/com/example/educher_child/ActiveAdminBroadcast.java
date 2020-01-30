@@ -64,8 +64,11 @@ public class ActiveAdminBroadcast extends DeviceAdminReceiver {
         reference = FirebaseDatabase.getInstance().getReference().child(t).child(child_id.getString(2)).child(APPS);
         reference.child(prefManager.getLauncherPackage().replace(".","_")).child("locked").setValue(true);
         reference.child(prefManager.getSettingPackage().replace(".","_")).child("locked").setValue(true);
-
+        if(prefManager.hasSystemUI()){
+            reference.child(prefManager.getSystemui().replace('.','_')).child("locked").setValue(true);
+        }
         //update sqlite rules
+
         dataBaseHelper.updateAppStateByPackage(prefManager.getLauncherPackage(),true);
         dataBaseHelper.updateAppStateByPackage(prefManager.getSettingPackage(),true);
         prefManager.setIsLauncherBlock(true);

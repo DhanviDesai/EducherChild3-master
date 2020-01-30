@@ -50,6 +50,8 @@ import static com.example.educher_child.AppConfiguration.TOKEN;
 public class ParentKey extends AppCompatActivity {
 
 
+    private boolean flag = false;
+
     //edittext to enter the parent_key
     private EditText parent_key;
 
@@ -274,6 +276,11 @@ public class ParentKey extends AppCompatActivity {
                             installedApps.add(addAppInList(p));
                         }else if (p.packageName.equals("com.android.dialer")){
                             installedApps.add(addAppInList(p));
+                        }
+                        else if (p.packageName.equals("com.android.systemui")){
+                            flag = true;
+                            prefManager.setSystemui("com.android.systemui");
+                            installedApps.add(addAppInList(p));
                         }else{
                             Log.d(TAG, "getListOfInstalledApp: system");
                         }
@@ -286,6 +293,7 @@ public class ParentKey extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
 
             return installedApps;
         }

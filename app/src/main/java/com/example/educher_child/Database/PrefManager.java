@@ -17,6 +17,7 @@ public class PrefManager {
     private static final String SETTING_PACKAGE = "settingpackage";
     private static final String PARENT_KEY = "parent_key";
     private static final String CHILD_ID = "childid";
+    private static final String SYSTEM_UI ="systemui";
 
     private Context context;
 
@@ -101,6 +102,24 @@ public class PrefManager {
     public void setSettingPackage(String settingPackage){
         editor.putString(SETTING_PACKAGE,settingPackage);
         editor.commit();
+    }
+
+    public boolean hasSystemUI(){
+        String systemUI = sharedPreferences.getString(SYSTEM_UI,null);
+        if(systemUI!=null){
+            return true;
+        }
+        return false;
+
+    }
+
+    public void setSystemui(String systemui){
+        editor.putString(SYSTEM_UI,systemui);
+        editor.commit();
+    }
+
+    public String getSystemui(){
+        return sharedPreferences.getString(SYSTEM_UI,null);
     }
 
     public String getSettingPackage(){
