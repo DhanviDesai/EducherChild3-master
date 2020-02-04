@@ -45,7 +45,7 @@ public class BatteryPermission extends AppCompatActivity {
         Log.d(TAG, "onCreate: "+isIgnoringBatteryOptimizations);
 
         if (isIgnoringBatteryOptimizations){
-            startActivity(new Intent(getApplicationContext(),Login.class));
+            startActivity(new Intent(getApplicationContext(),ChildHidden.class));
             finish();
         }
 
@@ -53,7 +53,7 @@ public class BatteryPermission extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isIgnoringBatteryOptimizations){
-                    startActivity(new Intent(getApplicationContext(),Login.class));
+                    startActivity(new Intent(getApplicationContext(),ChildHidden.class));
                     finish();
                 }else{
                     Toast.makeText(BatteryPermission.this, "Please Give Permission", Toast.LENGTH_SHORT).show();
